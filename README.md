@@ -40,7 +40,7 @@
 - 먼저, auth를 import (import "firebase/auth")
 <br/>
 <details>
-<summary>*Absolute import*</summary>
+<summary><i>Absolute import<i></summary>
 - 절대 경로로 import 할 수 있다.
 - jsconfig.json 파일 생성
 
