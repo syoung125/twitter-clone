@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
-import firebase from "./firebase";
+// import fbase from "fbase";
 
-console.log(firebase); // firebase 연결 확인
+// console.log(fbase); // firebase 연결 확인
 
 ReactDOM.render(
   <React.StrictMode>
