@@ -58,3 +58,4 @@
 
 - [firebase.auth.Auth](https://firebase.google.com/docs/reference/js/firebase.auth.Auth):link:
   - authService.currentUser: 유저의 로그인 여부를 알 수 있다
+- Firebase Auth 메뉴에서 Email/Password, Google, GitHub를 enabled 설정 함
