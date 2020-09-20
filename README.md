@@ -40,11 +40,11 @@
 - 먼저, auth를 import (import "firebase/auth")
 <br/>
 <details>
-<summary>###### Absolute import</summary>
+<summary>*Absolute import*</summary>
 - 절대 경로로 import 할 수 있다.
 - jsconfig.json 파일 생성
 
-```json
+```js
 {
   "compilerOptions": {
     "baseUrl": "src"
@@ -57,3 +57,4 @@
 <br/>
 
 - [firebase.auth.Auth](https://firebase.google.com/docs/reference/js/firebase.auth.Auth):link:
+  - authService.currentUser: 유저의 로그인 여부를 알 수 있다
