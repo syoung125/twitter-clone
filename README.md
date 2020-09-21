@@ -1,5 +1,9 @@
 # TWITTER-CLONE (sytwitter:hatched_chick:)
 
+<ul>
+<li href="#1-set-up">#1 SET UP</li>
+</ul>
+
 ## #1 SET UP
 
 #### 1. Firebase 연결
@@ -164,7 +168,7 @@ await dbService.doc(`sytweets/${sytweetObj.id}`).update({
 - [firebase.storage](https://firebase.google.com/docs/reference/js/firebase.storage) (import "firebase/storage";)
 - [firebase.storage.Reference](https://firebase.google.com/docs/reference/js/firebase.storage.Reference): 파일을 업로드, 다운로드, 삭제 할 수 있음
 
-###### 이미지 업로드
+#### 이미지 업로드
 
 1. 이미지를 storage에 업로드한다.
 2. 업로드된 url을 알아낸다.
@@ -178,4 +182,4 @@ attechmentUrl = await response.ref.getDownloadURL(); // storage에 업로드된 
 
 - 이미지 랜덤 아이디 지정해야함 -> npm install uuid 사용
 
-###### 이미지 delete
+#### 이미지 delete
