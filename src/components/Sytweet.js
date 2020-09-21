@@ -51,6 +51,9 @@ const Sytweet = ({ sytweetObj, isOwner }) => {
       ) : (
         <>
           <h4>{sytweetObj.text}</h4>
+          {sytweetObj.attachmentUrl && (
+            <img src={sytweetObj.attachmentUrl} width="50px" height="50px" />
+          )}
           {isOwner && (
             <>
               <button onClick={onDeleteClick}>Delete Sytweet</button>

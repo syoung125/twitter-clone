@@ -114,7 +114,7 @@ const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
 
 ##### CRUD
 
-- ([Creat](https://firebase.google.com/docs/reference/js/firebase.firestore.CollectionReference#add)): dbService.collection(), **add({데이터})** 로 document 삽입 (Home.js)
+- **CREATE**: dbService.collection(), **add({데이터})** 로 document 삽입 (Home.js) [참고](https://firebase.google.com/docs/reference/js/firebase.firestore.CollectionReference#add)
 
 ```js
 const onSubmit = async (e) => {
@@ -130,7 +130,7 @@ const onSubmit = async (e) => {
 
 creatorId 정보도 함께 저장 -> update, delete시 편함
 
-- READ: **get()** 사용, get()은 QuerySnapshot(docs, metadata, size, empty, foreach 등)을 리턴
+- **READ**: **get()** 사용, get()은 QuerySnapshot(docs, metadata, size, empty, foreach 등)을 리턴 [참고](https://firebase.google.com/docs/reference/js/firebase.firestore.CollectionReference#get)
 
 ```js
 const dbSytweets = await dbService.collection("sytweets").get();
@@ -155,3 +155,27 @@ await dbService.doc(`sytweets/${sytweetObj.id}`).update({
   text: newSytweet,
 });
 ```
+
+## #4 FILE UPLOAD
+
+#### Firebase Storage 이용
+
+- [FileReader](https://developer.mozilla.org/en-US/docs/Web/API/FileReader)를 사용하여 브라우저에서 파일을 읽는다
+- [firebase.storage](https://firebase.google.com/docs/reference/js/firebase.storage) (import "firebase/storage";)
+- [firebase.storage.Reference](https://firebase.google.com/docs/reference/js/firebase.storage.Reference): 파일을 업로드, 다운로드, 삭제 할 수 있음
+
+###### 이미지 업로드
+
+1. 이미지를 storage에 업로드한다.
+2. 업로드된 url을 알아낸다.
+3. database에 이미지의 url을 저장한다.
+
+```js
+const fileRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`);
+const response = await fileRef.putString(attachment, "data_url");
+attechmentUrl = await response.ref.getDownloadURL(); // storage에 업로드된 url
+```
+
+- 이미지 랜덤 아이디 지정해야함 -> npm install uuid 사용
+
+###### 이미지 delete
