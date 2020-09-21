@@ -1,4 +1,4 @@
-# TWITTER-CLONE (sytwitter)
+# TWITTER-CLONE (sytwitter:hatched_chick:)
 
 ## #1 SET UP
 
@@ -37,10 +37,11 @@
 
 #### 1.Firebase Auth 사용
 
-- 먼저, auth를 import (import "firebase/auth")
+1. auth를 import (import "firebase/auth")
 <br/>
 <details>
 <summary><i>Absolute import<i></summary>
+
 - 절대 경로로 import 할 수 있다.
 - jsconfig.json 파일 생성
 
@@ -56,6 +57,31 @@
 </details>
 <br/>
 
-- [firebase.auth.Auth](https://firebase.google.com/docs/reference/js/firebase.auth.Auth):link:
-  - authService.currentUser: 유저의 로그인 여부를 알 수 있다
-- Firebase Auth 메뉴에서 Email/Password, Google, GitHub를 enabled 설정 함
+2. [firebase.auth.Auth](https://firebase.google.com/docs/reference/js/firebase.auth.Auth)
+   - authService.currentUser: 유저의 로그인 여부를 알 수 있다
+3. Firebase Auth 메뉴에서 Email/Password, Google, GitHub를 enabled 설정 함
+4. src/routes/Auth.js에 form 만듦
+5. [firebase.auth.EmailAuthProvider](https://firebase.google.com/docs/reference/js/firebase.auth.EmailAuthProvider):link:
+   - [createUserWithEmailAndPassword](https://firebase.google.com/docs/reference/js/firebase.auth.Auth#createuserwithemailandpassword)
+     - 회원가입 후 자동으로 로그인 됨
+   - [signInWithEmailAndPassword](https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithemailandpassword)
+   - setPersistence란?
+     - 사용자들을 어떻게 기억할 것인지 선택할 수 있게 해줌
+       - local: default - 브라우저를 닫더라도 사용자 정보는 기억될 것
+       - session: 탭이 열려 있는 동안에는 사용자 정보 기억
+       - none: 유저를 기억하지 않음 (새로고침 -> 다시 로그인해야 함)
+
+<details>
+<summary><i>+ currentUser를 바로 설정할 수 없는 이유<i></summary>
+
+- currentUser를 다음과 같이 설정하면 isLoggedIn값이 계속 null값이 된다.
+
+```js
+const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
+```
+
+- 2초간 한번씩 currentUser를 콘솔로 찍어보면 약 4초 이 후에 user값이 들어오는 것을 확일할 수 있다.
+- 따라서 bool타입의 변수(init)를 선언하고(isLoading과 비슷한 역할), componetnDidMount의 기능을 하는 userEffect에서 onAuthStateChanged를 사용하여 user 상태가 있으면 페이지를 로딩한다.
+- onAuthStateChanged: observer로 유저 상태가 변할 때 실행된다.
+
+</details>
