@@ -1,4 +1,4 @@
-import { dbService } from "fbase";
+import { dbService, storageService } from "fbase";
 import React, { useState } from "react";
 
 const Sytweet = ({ sytweetObj, isOwner }) => {
@@ -9,6 +9,7 @@ const Sytweet = ({ sytweetObj, isOwner }) => {
     const ok = window.confirm("Are you sure you want to delete this sytweet?");
     if (ok) {
       await dbService.doc(`sytweets/${sytweetObj.id}`).delete();
+      await storageService.refFromURL(sytweetObj.attachmentUrl).delete();
     }
   };
 

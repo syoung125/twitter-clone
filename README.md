@@ -183,3 +183,6 @@ attechmentUrl = await response.ref.getDownloadURL(); // storage에 업로드된 
 - 이미지 랜덤 아이디 지정해야함 -> npm install uuid 사용
 
 #### 이미지 delete
+
+- url로 사진 삭제 가능
+  - await storageService.refFromURL(sytweetObj.attachmentUrl).delete();

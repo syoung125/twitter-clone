@@ -20,17 +20,17 @@ const Home = ({ userObj }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    let attechmentUrl = "";
-    if (attachment != "") {
+    let attachmentUrl = "";
+    if (attachment !== "") {
       const fileRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`);
       const response = await fileRef.putString(attachment, "data_url");
-      attechmentUrl = await response.ref.getDownloadURL();
+      attachmentUrl = await response.ref.getDownloadURL();
     }
     const sytweetObj = {
       text: sytweet,
       createdAt: Date.now(),
       creatorId: userObj.uid,
-      attechmentUrl,
+      attachmentUrl,
     };
     await dbService.collection("sytweets").add(sytweetObj);
     setSytweet("");
