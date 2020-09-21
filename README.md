@@ -86,5 +86,22 @@ const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
 
 </details>
 
-6. 소셜 로그인
-   - signInWithPopup
+6. 소셜 로그인: provider를 생성 -> signInWithPopup하면 된다. 간단!
+
+7. 로그아웃: authService.signOut(); (/profile에서 구현했다.)
+8. Redirect 방법
+   - useLocation (Profile.js)
+   ```js
+   const history = useHistory();
+   const onLogOutClick = () => {
+     authService.signOut();
+     history.push("/");
+   };
+   ```
+   - Redirect (Router.js)
+   ```js
+   <Redirect from="*" to="/" />
+   ```
+   모든 url들을 "/"으로 보냄
+
+## #3 TWEETING
