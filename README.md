@@ -35,12 +35,12 @@
 
 ## #2 AUTHENTICATION
 
-#### 1.Firebase Auth 사용
+#### Firebase Auth 사용
 
 1. auth를 import (import "firebase/auth")
-<br/>
+
 <details>
-<summary><i>Absolute import<i></summary>
+<summary><i>Absolute import</i></summary>
 
 - 절대 경로로 import 할 수 있다.
 - jsconfig.json 파일 생성
@@ -61,7 +61,7 @@
    - authService.currentUser: 유저의 로그인 여부를 알 수 있다
 3. Firebase Auth 메뉴에서 Email/Password, Google, GitHub를 enabled 설정 함
 4. src/routes/Auth.js에 form 만듦
-5. [firebase.auth.EmailAuthProvider](https://firebase.google.com/docs/reference/js/firebase.auth.EmailAuthProvider):link:
+5. [firebase.auth.EmailAuthProvider](https://firebase.google.com/docs/reference/js/firebase.auth.EmailAuthProvider)
    - [createUserWithEmailAndPassword](https://firebase.google.com/docs/reference/js/firebase.auth.Auth#createuserwithemailandpassword)
      - 회원가입 후 자동으로 로그인 됨
    - [signInWithEmailAndPassword](https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithemailandpassword)
@@ -72,7 +72,7 @@
        - none: 유저를 기억하지 않음 (새로고침 -> 다시 로그인해야 함)
 
 <details>
-<summary><i>+ currentUser를 바로 설정할 수 없는 이유<i></summary>
+<summary><i>+ currentUser를 바로 설정할 수 없는 이유</i></summary>
 
 - currentUser를 다음과 같이 설정하면 isLoggedIn값이 계속 null값이 된다.
 
@@ -83,8 +83,8 @@ const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
 - 2초간 한번씩 currentUser를 콘솔로 찍어보면 약 4초 이 후에 user값이 들어오는 것을 확일할 수 있다.
 - 따라서 bool타입의 변수(init)를 선언하고(isLoading과 비슷한 역할), componetnDidMount의 기능을 하는 userEffect에서 onAuthStateChanged를 사용하여 user 상태가 있으면 페이지를 로딩한다.
 - onAuthStateChanged: observer로 유저 상태가 변할 때 실행된다.
-
 </details>
+<br/>
 
 6. 소셜 로그인: provider를 생성 -> signInWithPopup하면 된다. 간단!
 
@@ -105,3 +105,31 @@ const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
    모든 url들을 "/"으로 보냄
 
 ## #3 TWEETING
+
+#### Firebase Database 이용
+
+1. Cloud Firestore에서 database생성
+2. import "firebase/firestore" (fbase.js)
+3. database는 collection을 갖고있고(폴더 같은거), colection은 document를 갖음 (collection: group of documents)
+
+##### CRUD
+
+- Creact: dbService.collection(), *add({데이터})*로 document 삽입 (Home.js)
+
+```js
+const onSubmit = async (e) => {
+  e.preventDefault();
+  await dbService.collection("sytweets").add({
+    sytweet,
+    createdAt: Date.now(),
+  });
+  setSytweet("");
+};
+```
+
+- READ: _get()_ 사용, get()은 QuerySnapshot(docs, metadata, size, empty, foreach 등)을 리턴
+
+```js
+const dbSytweets = await dbService.collection("sytweets").get();
+dbSytweets.forEach((document) => console.log(document.data()));
+```
