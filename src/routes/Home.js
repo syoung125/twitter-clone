@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { dbService } from "fbase";
+import Sytweet from "components/Sytweet";
 
 const Home = ({ userObj }) => {
   const [sytweet, setSytweet] = useState("");
@@ -44,9 +45,11 @@ const Home = ({ userObj }) => {
       </form>
       <div>
         {sytweets.map((sytweet) => (
-          <div key={sytweet.id}>
-            <h4>{sytweet.text}</h4>
-          </div>
+          <Sytweet
+            key={sytweet.id}
+            sytweetObj={sytweet}
+            isOwner={sytweet.creatorId === userObj.uid}
+          />
         ))}
       </div>
     </div>
