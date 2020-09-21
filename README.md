@@ -114,7 +114,7 @@ const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
 
 ##### CRUD
 
-- Creact: dbService.collection(), *add({데이터}) ([참고](https://firebase.google.com/docs/reference/js/firebase.firestore.CollectionReference#add))*로 document 삽입 (Home.js)
+- ([Creat](https://firebase.google.com/docs/reference/js/firebase.firestore.CollectionReference#add)): dbService.collection(), **add({데이터})** 로 document 삽입 (Home.js)
 
 ```js
 const onSubmit = async (e) => {
@@ -130,7 +130,7 @@ const onSubmit = async (e) => {
 
 creatorId 정보도 함께 저장 -> update, delete시 편함
 
-- READ: _get()_ 사용, get()은 QuerySnapshot(docs, metadata, size, empty, foreach 등)을 리턴
+- READ: **get()** 사용, get()은 QuerySnapshot(docs, metadata, size, empty, foreach 등)을 리턴
 
 ```js
 const dbSytweets = await dbService.collection("sytweets").get();
@@ -139,7 +139,7 @@ dbSytweets.forEach((document) => console.log(document.data()));
 
 - onSnapshot: 데이터베이스의 변화를 실시간으로 알려줌 (db에서 뭔가가 변하면 실행됨 -> 여기서 데이터 가져오기)
 
-- UPDATE, DELETE
+- **UPDATE, DELETE**
 
 1. SYTWEET 컴포넌트 생성 -> 현재 접속 유저(userObj.uid)와 db date의 creatorId가 같은 경우만 편집, 삭제 가능
 2. [DELETE](https://firebase.google.com/docs/reference/js/firebase.firestore.DocumentReference#delete):
