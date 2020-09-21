@@ -5,21 +5,13 @@ const Home = ({ userObj }) => {
   const [sytweet, setSytweet] = useState("");
   const [sytweets, setSytweets] = useState([]);
 
-  const getSyweets = async () => {
-    const dbSytweets = await dbService.collection("sytweets").get();
-    dbSytweets.forEach((document) => {
-      const sytweetObject = {
-        ...document.data(),
-        id: document.id,
-      };
-      setSytweets((prev) => [sytweetObject, ...prev]);
-    });
-  };
-
   useEffect(() => {
-    getSyweets();
     dbService.collection("sytweets").onSnapshot((snapshot) => {
-      console.log("something happended");
+      const sytweetArray = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setSytweets(sytweetArray);
     });
   }, []);
 

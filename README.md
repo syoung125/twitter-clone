@@ -137,4 +137,4 @@ const dbSytweets = await dbService.collection("sytweets").get();
 dbSytweets.forEach((document) => console.log(document.data()));
 ```
 
-- onSnapshot: 데이터베이스의 변화를 실시간으로 알려줌
+- onSnapshot: 데이터베이스의 변화를 실시간으로 알려줌 (db에서 뭔가가 변하면 실행됨 -> 여기서 데이터 가져오기)
