@@ -85,3 +85,6 @@ const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
 - onAuthStateChanged: observer로 유저 상태가 변할 때 실행된다.
 
 </details>
+
+6. 소셜 로그인
+   - signInWithPopup
