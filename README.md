@@ -139,11 +139,19 @@ dbSytweets.forEach((document) => console.log(document.data()));
 
 - onSnapshot: 데이터베이스의 변화를 실시간으로 알려줌 (db에서 뭔가가 변하면 실행됨 -> 여기서 데이터 가져오기)
 
-- UPDATE, [DELETE](https://firebase.google.com/docs/reference/js/firebase.firestore.DocumentReference#delete)
+- UPDATE, DELETE
 
 1. SYTWEET 컴포넌트 생성 -> 현재 접속 유저(userObj.uid)와 db date의 creatorId가 같은 경우만 편집, 삭제 가능
-2. DELETE:
+2. [DELETE](https://firebase.google.com/docs/reference/js/firebase.firestore.DocumentReference#delete):
 
 ```js
 await dbService.doc(`sytweet/${sytweetObj.id}`).delete();
+```
+
+3. [UPDATE](https://firebase.google.com/docs/reference/js/firebase.firestore.DocumentReference#update)
+
+```js
+await dbService.doc(`sytweets/${sytweetObj.id}`).update({
+  text: newSytweet,
+});
 ```
