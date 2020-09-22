@@ -18,9 +18,9 @@ const Home = ({ userObj }) => {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <SytweetFactory userObj={userObj} />
-      <div>
+      <div style={{ marginTop: 30 }}>
         {sytweets.map((sytweet) => (
           <Sytweet
             key={sytweet.id}
