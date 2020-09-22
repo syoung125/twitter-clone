@@ -209,4 +209,16 @@ setUserObj({
 
 ## #6 FINISHING UP
 
-- 코드 정리
+[x] 코드 정리
+[x] css 꾸미기
+[x] 깃헙 deploying
+
+- package.json에 script에 추가
+
+```js
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+```
+
+- npm run deploy
+  - build 폴더 생성, 지정한(package.json의 homepage에) gh-pages에 업로드
