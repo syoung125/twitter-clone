@@ -186,3 +186,23 @@ attechmentUrl = await response.ref.getDownloadURL(); // storage에 업로드된 
 
 - url로 사진 삭제 가능
   - await storageService.refFromURL(sytweetObj.attachmentUrl).delete();
+
+## #5 EDIT PROFILE
+
+- [Update profile](https://firebase.google.com/docs/reference/js/firebase.User#updateprofile)
+
+- displayName변경 -> Proifle에서 user객체를 받아서 form에서 변경
+- firebase의 user.updateProfile 사용
+  - 또는 user collection을 만들어서 user정보 저장 후 Read,Update
+- currentUser정보가 바껴도 적용이 안되는이유(App.js - refreshUser()): 객체 크기가 너무 커서..!
+- 해결: 1) object크기를 줄인다.
+
+````js
+    const user = authService.currentUser;
+    setUserObj({
+      displayName: user.displayName,
+      uid: user.uid,
+      updateProfile: (args) => user.updateProfile(args),
+    });
+    ```
+````
