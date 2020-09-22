@@ -222,3 +222,21 @@ setUserObj({
 
 - npm run deploy
   - build 폴더 생성, 지정한(package.json의 homepage에) gh-pages에 업로드
+
+(또는 github repository setting에서 publishing가능)
+
+[x] firebase 보안
+
+- publishing 하고 난 후 social 로그인 지원이 안된다.
+
+  - firebase에서 이 웹페이지에서 해당 동작을 할 권한이 없다고 판단했기 때문
+
+- firebase database [rule](https://firebase.google.com/docs/rules/get-started)을 변경할 수 있다. (storage에도 있음)
+  - if request.auth != null; 로 해줌
+  - 로그인 되어 있을 때만 read, write가능 [(이거)](https://firebase.google.com/docs/rules/basics#development-environment_rules)
+
+[x] API Key Security
+
+- https://console.developers.google.com/apis/credentials에서 프로젝트의 보안 설정 (firebase가 자동으로 만들어준것)
+- *Browser key (auto created by Firebase)*에서 설정한 경로로만 api에 접근 가능하게 함
+  - **firebase domain**을 꼭 넣어줘야 firebase 기능도 동작!
