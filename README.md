@@ -197,12 +197,16 @@ attechmentUrl = await response.ref.getDownloadURL(); // storage에 업로드된 
 - currentUser정보가 바껴도 적용이 안되는이유(App.js - refreshUser()): 객체 크기가 너무 커서..!
 - 해결: 1) object크기를 줄인다.
 
-````js
-    const user = authService.currentUser;
-    setUserObj({
-      displayName: user.displayName,
-      uid: user.uid,
-      updateProfile: (args) => user.updateProfile(args),
-    });
-    ```
-````
+```js
+// setUserObj(authService.currentUser); 이렇게 하는 대신
+const user = authService.currentUser;
+setUserObj({
+  displayName: user.displayName,
+  uid: user.uid,
+  updateProfile: (args) => user.updateProfile(args),
+});
+```
+
+## #6 FINISHING UP
+
+- 코드 정리
