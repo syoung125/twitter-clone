@@ -209,9 +209,9 @@ setUserObj({
 
 ## #6 FINISHING UP
 
-[x] 코드 정리
-[x] css 꾸미기
-[x] 깃헙 deploying
+- [x] 코드 정리
+- [x] css 꾸미기
+- [x] 깃헙 deploying
 
 - package.json에 script에 추가
 
@@ -225,7 +225,7 @@ setUserObj({
 
 (또는 github repository setting에서 publishing가능)
 
-[x] firebase 보안
+- [x] firebase 보안
 
 - publishing 하고 난 후 social 로그인 지원이 안된다.
 
@@ -235,8 +235,8 @@ setUserObj({
   - if request.auth != null; 로 해줌
   - 로그인 되어 있을 때만 read, write가능 [(이거)](https://firebase.google.com/docs/rules/basics#development-environment_rules)
 
-[x] API Key Security
+- [x] API Key Security
 
 - https://console.developers.google.com/apis/credentials에서 프로젝트의 보안 설정 (firebase가 자동으로 만들어준것)
-- *Browser key (auto created by Firebase)*에서 설정한 경로로만 api에 접근 가능하게 함
+- _Browser key (auto created by Firebase)_에서 설정한 경로로만 api에 접근 가능하게 함
   - **firebase domain**을 꼭 넣어줘야 firebase 기능도 동작!
